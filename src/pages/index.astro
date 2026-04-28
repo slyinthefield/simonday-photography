@@ -1,17 +1,36 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home" overlayNav={true}>
+  <section class="hero">
+    <span class="hero__eyebrow">Photography</span>
+    <h1 class="hero__title">Simon<br />Day</h1>
+    <span class="hero__scroll-hint">Scroll</span>
+  </section>
+  <section class="home-grid">
+    <p class="home-grid__label">Selected work</p>
+    <div class="home-series-grid">
+      <div class="series-card">
+        <div class="series-card__placeholder"></div>
+        <div class="series-card__info">
+          <p class="series-card__title">New Zealand — South Island</p>
+          <p class="series-card__meta">2025 · 18 images</p>
+        </div>
+      </div>
+      <div class="series-card">
+        <div class="series-card__placeholder"></div>
+        <div class="series-card__info">
+          <p class="series-card__title">Sheffield Architecture</p>
+          <p class="series-card__meta">2024 · 12 images</p>
+        </div>
+      </div>
+      <div class="series-card">
+        <div class="series-card__placeholder"></div>
+        <div class="series-card__info">
+          <p class="series-card__title">Devon & Cornwall</p>
+          <p class="series-card__meta">2024 · 14 images</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

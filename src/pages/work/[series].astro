@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export async function getStaticPaths() {
+  return [
+    { params: { series: 'new-zealand-south-island' } },
+    { params: { series: 'new-zealand-north-island' } },
+    { params: { series: 'australia' } },
+    { params: { series: 'sheffield-architecture' } },
+    { params: { series: 'devon-and-cornwall' } },
+  ];
+}
+const { series } = Astro.params;
+const title = series.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+---
+<BaseLayout title={title}>
+  <div class="series-header">
+    <h1 class="series-header__title">{title}</h1>
+    <p class="series-header__context">
+      Series context will appear here — 2–4 sentences that locate the work without over-explaining it.
+    </p>
+  </div>
+  <div class="series-images">
+    <div class="series-image">
+      <div style="aspect-ratio: 3/2; background: #181818;"></div>
+    </div>
+    <div class="series-image">
+      <div style="aspect-ratio: 2/3; background: #181818;"></div>
+    </div>
+    <div class="series-image">
+      <div style="aspect-ratio: 3/2; background: #181818;"></div>
+    </div>
+  </div>
+  <div class="series-back">
+    <a href="/work">← All work</a>
+  </div>
+</BaseLayout>
