@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- This file exists purely for Netlify's form scanner.
+         It registers the contact form so submissions from /contact route correctly.
+         It is never linked to or visited by users. -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
