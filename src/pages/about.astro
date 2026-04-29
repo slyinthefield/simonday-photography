@@ -1,11 +1,79 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Replace this empty string with a Cloudinary URL when the portrait is ready.
+// Use coverImage() transform from src/utils/cloudinary.ts:
+// import { coverImage } from '../utils/cloudinary';
+const portraitUrl = "";
 ---
-<BaseLayout title="About">
-  <div class="page-content">
-    <h1 class="page-title">About</h1>
-    <div class="page-body">
-      <p>Biography coming soon.</p>
+
+<BaseLayout title="About — Simon Day">
+  <main class="about-page">
+
+    <div class="about-portrait">
+      {portraitUrl
+        ? <img src={portraitUrl} alt="Simon Day" class="about-portrait__image" />
+        : <div class="about-portrait__placeholder"></div>
+      }
     </div>
-  </div>
+
+    <div class="about-text">
+      <p>I've been taking photographs for most of my adult life. The seriousness with which I approach it has grown over time, but there wasn't a moment of conversion — it's been a gradual process of paying more attention, learning more, and making better work. This site is where that's got to.</p>
+
+      <p>I shoot landscape and travel mainly, with some street and architecture when a place gives me reason to. I'm drawn to scenes where the human element is present but not dominant — a road, a window, a coastline that's clearly been lived alongside. I'm interested in what light does to a place at particular times of day, and in the kind of quiet that some landscapes have.</p>
+
+      <p>I work with a Fujifilm X-E5 for landscape and travel — small enough to carry all day without thinking about it, and the files respond well to deliberate processing. The Ricoh GR3x goes in my pocket for street work and close-up detail, where I want to move quickly. The iPhone 17 Pro covers everything else. Each camera suits a different way of working and I try to use them accordingly.</p>
+
+      <p>I'm based in Sheffield and travel as much as I can. The work on this site spans New Zealand, Australia, and various parts of the UK.</p>
+    </div>
+
+  </main>
 </BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-portrait__image {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-portrait__placeholder {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 4 / 5;
+    background: var(--text-muted);
+    opacity: 0.15;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-text p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  @media (min-width: 768px) {
+    .about-page {
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+  }
+</style>
