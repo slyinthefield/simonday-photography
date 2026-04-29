@@ -1,10 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Replace this empty string with a Cloudinary URL when the portrait is ready.
-// Use coverImage() transform from src/utils/cloudinary.ts:
-// import { coverImage } from '../utils/cloudinary';
-const portraitUrl = "";
+import { coverImage } from '../utils/cloudinary';
+const portraitUrl = coverImage("https://res.cloudinary.com/df3fwxynp/image/upload/v1777471193/IMG_0852_cmzcbx.jpg");
 ---
 
 <BaseLayout title="About — Simon Day">
@@ -12,7 +10,7 @@ const portraitUrl = "";
 
     <div class="about-portrait">
       {portraitUrl
-        https://res.cloudinary.com/df3fwxynp/image/upload/v1777471193/IMG_0852_cmzcbx.jpg <img src={portraitUrl} alt="Simon Day" class="about-portrait__image" />
+        ? <img src={portraitUrl} alt="Simon Day" class="about-portrait__image" />
         : <div class="about-portrait__placeholder"></div>
       }
     </div>
