@@ -1,36 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
 export async function getStaticPaths() {
-  return [
-    { params: { series: 'new-zealand-south-island' } },
-    { params: { series: 'new-zealand-north-island' } },
-    { params: { series: 'australia' } },
-    { params: { series: 'sheffield-architecture' } },
-    { params: { series: 'devon-and-cornwall' } },
-  ];
+  const allSeries = await getCollection('series');
+  return allSeries.map((entry) => ({
+    params: { series: entry.id },
+    props: { entry },
+  }));
 }
-const { series } = Astro.params;
-const title = series.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
-<BaseLayout title={title}>
-  <div class="series-header">
-    <h1 class="series-header__title">{title}</h1>
-    <p class="series-header__context">
-      Series context will appear here — 2–4 sentences that locate the work without over-explaining it.
-    </p>
-  </div>
-  <div class="series-images">
-    <div class="series-image">
-      <div style="aspect-ratio: 3/2; background: #181818;"></div>
+
+<BaseLayout title={`${entry.data.title} — Simon Day`}>
+  <main class="series-page">
+    <header class="series-header">
+      <h1 class="series-title">{entry.data.title}</h1>
+      <p class="series-meta">{entry.data.location} — {entry.data.year}</p>
+      <div class="series-context">
+        <Content />
+      </div>
+    </header>
+
+    <div class="series-images">
+      {entry.data.images.map((image) => (
+        <figure class="series-image">
+          <img
+            src={image.url}
+            alt={image.caption || entry.data.title}
+            loading="lazy"
+          />
+          {image.caption && (
+            <figcaption class="series-caption">{image.caption}</figcaption>
+          )}
+        </figure>
+      ))}
     </div>
-    <div class="series-image">
-      <div style="aspect-ratio: 2/3; background: #181818;"></div>
-    </div>
-    <div class="series-image">
-      <div style="aspect-ratio: 3/2; background: #181818;"></div>
-    </div>
-  </div>
-  <div class="series-back">
-    <a href="/work">← All work</a>
-  </div>
+
+    <nav class="series-nav">
+      <a href="/work">← Back to Work</a>
+    </nav>
+  </main>
 </BaseLayout>

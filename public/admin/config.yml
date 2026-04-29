@@ -1,0 +1,33 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: REPLACE_WITH_YOUR_CLOUD_NAME
+    api_key: REPLACE_WITH_YOUR_API_KEY
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "series"
+    label: "Series"
+    label_singular: "Series"
+    folder: "src/content/series"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "url", widget: "image" }
+          - { label: "Caption (optional)", name: "caption", widget: "string", required: false }
+      - { label: "Context Text", name: "body", widget: "markdown" }

@@ -1,5 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allSeries = await getCollection('series');
+const featuredSeries = allSeries
+  .filter((s) => s.data.featured)
+  .sort((a, b) => b.data.year - a.data.year)
+  .slice(0, 4);
 ---
 <BaseLayout title="Home" overlayNav={true}>
   <section class="hero">
@@ -10,27 +17,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="home-grid">
     <p class="home-grid__label">Selected work</p>
     <div class="home-series-grid">
-      <div class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">New Zealand — South Island</p>
-          <p class="series-card__meta">2025 · 18 images</p>
-        </div>
-      </div>
-      <div class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">Sheffield Architecture</p>
-          <p class="series-card__meta">2024 · 12 images</p>
-        </div>
-      </div>
-      <div class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">Devon & Cornwall</p>
-          <p class="series-card__meta">2024 · 14 images</p>
-        </div>
-      </div>
+      {featuredSeries.map((series) => (
+        <a href={`/work/${series.id}`} class="series-card">
+          <div class="series-card__image">
+            {series.data.coverImage
+              ? <img src={series.data.coverImage} alt={series.data.title} loading="lazy" />
+              : <div class="series-card__placeholder"></div>
+            }
+          </div>
+          <div class="series-card__info">
+            <p class="series-card__title">{series.data.title}</p>
+            <p class="series-card__meta">{series.data.year} · {series.data.images.length} images</p>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 </BaseLayout>

@@ -1,47 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allSeries = await getCollection('series');
+allSeries.sort((a, b) => b.data.year - a.data.year);
 ---
-<BaseLayout title="Work">
-  <div class="work-index">
-    <div class="work-index__header">
-      <h1 class="work-index__title">Work</h1>
+
+<BaseLayout title="Work — Simon Day">
+  <main class="work-index">
+    <div class="work-header">
+      <h1>Work</h1>
     </div>
-    <div class="work-grid">
-      <a href="/work/new-zealand-south-island" class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">New Zealand — South Island</p>
-          <p class="series-card__meta">New Zealand · 2025 · 18 images</p>
-        </div>
-      </a>
-      <a href="/work/new-zealand-north-island" class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">New Zealand — North Island</p>
-          <p class="series-card__meta">New Zealand · 2025 · 15 images</p>
-        </div>
-      </a>
-      <a href="/work/australia" class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">Australia</p>
-          <p class="series-card__meta">Australia · 2025 · 8 images</p>
-        </div>
-      </a>
-      <a href="/work/sheffield-architecture" class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">Sheffield Architecture</p>
-          <p class="series-card__meta">United Kingdom · 2024 · 12 images</p>
-        </div>
-      </a>
-      <a href="/work/devon-and-cornwall" class="series-card">
-        <div class="series-card__placeholder"></div>
-        <div class="series-card__info">
-          <p class="series-card__title">Devon & Cornwall</p>
-          <p class="series-card__meta">United Kingdom · 2024 · 14 images</p>
-        </div>
-      </a>
+    <div class="series-grid">
+      {allSeries.map((series) => (
+        <a href={`/work/${series.id}`} class="series-card">
+          <div class="series-card__image">
+            {series.data.coverImage
+              ? <img src={series.data.coverImage} alt={series.data.title} loading="lazy" />
+              : <div class="series-card__placeholder"></div>
+            }
+          </div>
+          <div class="series-card__meta">
+            <h2 class="series-card__title">{series.data.title}</h2>
+            <span class="series-card__location">{series.data.location}</span>
+            <span class="series-card__year">{series.data.year}</span>
+            <span class="series-card__count">{series.data.images.length} images</span>
+          </div>
+        </a>
+      ))}
     </div>
-  </div>
+  </main>
 </BaseLayout>
