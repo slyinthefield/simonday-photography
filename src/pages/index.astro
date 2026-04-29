@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { coverImage } from '../utils/cloudinary';
 
 const allSeries = await getCollection('series');
 const featuredSeries = allSeries
@@ -21,7 +22,7 @@ const featuredSeries = allSeries
         <a href={`/work/${series.id}`} class="series-card">
           <div class="series-card__image">
             {series.data.coverImage
-              ? <img src={series.data.coverImage} alt={series.data.title} loading="lazy" />
+              ? <img src={coverImage(series.data.coverImage)} alt={series.data.title} loading="lazy" />
               : <div class="series-card__placeholder"></div>
             }
           </div>

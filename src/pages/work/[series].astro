@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { seriesImage } from '../../utils/cloudinary';
 
 export async function getStaticPaths() {
   const allSeries = await getCollection('series');
@@ -28,7 +29,7 @@ const { Content } = await render(entry);
       {entry.data.images.map((image) => (
         <figure class="series-image">
           <img
-            src={image.url}
+            src={seriesImage(image.url)}
             alt={image.caption || entry.data.title}
             loading="lazy"
           />
