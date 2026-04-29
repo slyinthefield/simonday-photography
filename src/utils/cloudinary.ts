@@ -21,3 +21,8 @@ export function seriesImage(url: string): string {
 export function coverImage(url: string): string {
   return cloudinaryUrl(url, 'f_auto,q_auto,w_800,ar_3:2,c_fill');
 }
+
+/** Full-screen hero image — maximum quality, wide */
+export function heroImage(url: string): string {
+  return cloudinaryUrl(url, 'f_auto,q_auto,w_2400');
+}

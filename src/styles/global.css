@@ -93,6 +93,10 @@ main { animation: fadeUp 0.7s ease forwards; }
   justify-content: flex-end;
   padding: 4rem 3rem;
   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--bg);
 }
 
 .hero__eyebrow {
