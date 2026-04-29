@@ -2,7 +2,7 @@
 title: Australia
 location: Australia
 year: 2026
-coverImage: https://res.cloudinary.com/df3fwxynp/image/upload/v1777463338/australia-cover_pf7ddn.jpg
+coverImage: https://res.cloudinary.com/df3fwxynp/image/upload/v1777463448/australia-13_o4kacz.jpg
 featured: true
 images:
   - url: https://res.cloudinary.com/df3fwxynp/image/upload/v1777463459/australia-3_snsb5q.jpg
