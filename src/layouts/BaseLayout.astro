@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
 const { title, overlayNav = false } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/work'
+    ? path === '/work' || path.startsWith('/work/')
+    : path === href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +17,15 @@ const { title, overlayNav = false } = Astro.props;
 </head>
   <body>
     <header class={`site-header${overlayNav ? ' site-header--overlay' : ''}`}>
-      <a href="/" class="site-name">Simon Day</a>
+      <a href="/" class="site-monogram" aria-label="Simon Day Photography">
+        <span class="monogram-s">S</span>
+        <span class="monogram-d">D</span>
+      </a>
       <nav class="site-nav">
-        <a href="/work">Work</a>
-        <a href="/about">About</a>
-        <a href="/prints">Prints</a>
-        <a href="/contact">Contact</a>
+        <a href="/work" class:list={[{ active: isActive('/work') }]}>Work</a>
+        <a href="/about" class:list={[{ active: isActive('/about') }]}>About</a>
+        <a href="/prints" class:list={[{ active: isActive('/prints') }]}>Prints</a>
+        <a href="/contact" class:list={[{ active: isActive('/contact') }]}>Contact</a>
       </nav>
     </header>
     <main>

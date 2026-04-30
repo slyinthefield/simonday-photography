@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import { coverImage } from '../utils/cloudinary';
-const portraitUrl = coverImage("https://res.cloudinary.com/df3fwxynp/image/upload/v1777471193/IMG_0852_cmzcbx.jpg");
+const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_auto,w_1600/Simon_-_Long_range_Portrait_vsgstr.jpg";
 ---
 
 <BaseLayout title="About, Simon Day">
@@ -40,16 +39,13 @@ const portraitUrl = coverImage("https://res.cloudinary.com/df3fwxynp/image/uploa
 
   .about-portrait__image {
     width: 100%;
-    max-width: 360px;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
 
   .about-portrait__placeholder {
     width: 100%;
-    max-width: 360px;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 2;
     background: var(--text-muted);
     opacity: 0.15;
   }
