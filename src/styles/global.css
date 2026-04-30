@@ -183,19 +183,12 @@ main { animation: fadeUp 0.7s ease forwards; }
 
 .work-index { padding: 4rem 3rem; }
 
-.work-index__header { margin-bottom: 3rem; }
 
-.work-index__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 300;
-  letter-spacing: 0.06em;
-}
 
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: 2.5rem;
 }
 
 .series-card {
@@ -212,18 +205,6 @@ main { animation: fadeUp 0.7s ease forwards; }
   background: linear-gradient(135deg, #1c1c1c 0%, #111 100%);
 }
 
-.series-card__info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
-  transform: translateY(4px);
-  transition: transform 0.4s ease;
-}
-
-.series-card:hover .series-card__info { transform: translateY(0); }
 
 .series-card__title {
   font-family: var(--font-display);
