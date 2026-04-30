@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 const { title, overlayNav = false } = Astro.props;
-const path = Astro.url.pathname;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) =>
   href === '/work'
     ? path === '/work' || path.startsWith('/work/')
