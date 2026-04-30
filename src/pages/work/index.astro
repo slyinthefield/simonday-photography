@@ -9,7 +9,7 @@ allSeries.sort((a, b) => b.data.year - a.data.year);
 
 <BaseLayout title="Work — Simon Day">
   <main class="work-index">
-    <div class="series-grid">
+    <div class="work-grid">
       {allSeries.map((series) => (
         <a href={`/work/${series.id}`} class="series-card">
           <h2 class="series-card__title">{series.data.title}</h2>
