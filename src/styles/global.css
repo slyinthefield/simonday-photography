@@ -86,7 +86,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .site-nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .site-nav a {
@@ -188,7 +188,7 @@ main { animation: fadeUp 0.7s ease forwards; }
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 4rem;
 }
 
 .series-card {
