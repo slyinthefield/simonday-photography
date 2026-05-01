@@ -5,8 +5,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="page-content">
     <h1 class="page-title">Prints</h1>
     <div class="page-body">
-      <p>A curated selection available to order. Full listings coming soon.</p>
-      <p style="margin-top: 1.5rem;">For enquiries in the meantime, <a href="/contact" style="color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">get in touch</a>.</p>
+      <p>I don't have a print shop set up yet. If you've seen something in the work that you'd like as a print, get in touch and we can talk about it — size, paper, what would suit the image.</p>
+      <p class="page-body__cta"><a href="/contact">Contact me</a></p>
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .page-body__cta {
+    margin-top: 1.5rem;
+  }
+
+  .page-body__cta a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+</style>
