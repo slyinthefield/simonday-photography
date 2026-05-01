@@ -1,29 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_auto,w_1600/Simon_-_Long_range_Portrait_vsgstr.jpg";
 ---
-
 <BaseLayout title="About, Simon Day">
   <main class="about-page">
-
     <div class="about-portrait">
       {portraitUrl
         ? <img src={portraitUrl} alt="Simon Day" class="about-portrait__image" />
         : <div class="about-portrait__placeholder"></div>
       }
-     <p class="about-portrait__caption">Portrait in front of a mural by <a href="https://www.instagram.com/roblee_art/" target="_blank" rel="noopener noreferrer">Rob Lee</a>, Sheffield</p>
+      <p class="about-portrait__caption">Portrait in front of a mural by <a href="https://www.instagram.com/roblee_art/" target="_blank" rel="noopener noreferrer">Rob Lee</a>, Sheffield</p>
+    </div>
 
     <div class="about-text">
       <p>I've been taking photographs for most of my adult life. The seriousness with which I approach it has grown over time, but there wasn't a moment of conversion, it's been a gradual process of paying more attention, learning more, and making better work. This site is where that's got to.</p>
-
       <p>I shoot landscape and travel mainly, with some street and architecture when a place gives me reason to. I'm drawn to scenes where the human element is present but not dominant, a road, a window, a coastline that's clearly been lived alongside. I'm interested in what light does to a place at particular times of day, and in the kind of quiet that some landscapes have.</p>
-
       <p>I work with a Fujifilm X-E5 for landscape and travel, small enough to carry all day without thinking about it, and the files respond well to deliberate processing. The Ricoh GR3x goes in my pocket for street work and close-up detail, where I want to move quickly. The iPhone 17 Pro covers everything else. Each camera suits a different way of working and I try to use them accordingly.</p>
-
       <p>I'm based in Sheffield and travel as much as I can. The work on this site spans New Zealand, Australia, and various parts of the UK.</p>
     </div>
-
   </main>
 </BaseLayout>
 
@@ -50,13 +44,20 @@ const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_
     opacity: 0.15;
   }
 
+  .about-portrait__caption {
+    margin-top: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
   .about-portrait__caption a {
-  margin-top: 0.75rem;
-  margin-bottom: 2rem;
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
   .about-text {
     display: flex;
