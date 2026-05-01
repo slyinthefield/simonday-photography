@@ -12,7 +12,7 @@ const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_
         ? <img src={portraitUrl} alt="Simon Day" class="about-portrait__image" />
         : <div class="about-portrait__placeholder"></div>
       }
-    </div>
+     <p class="about-portrait__caption">Portrait in front of a mural by <a href="https://www.instagram.com/roblee_art/" target="_blank" rel="noopener noreferrer">Rob Lee</a>, Sheffield</p>
 
     <div class="about-text">
       <p>I've been taking photographs for most of my adult life. The seriousness with which I approach it has grown over time, but there wasn't a moment of conversion, it's been a gradual process of paying more attention, learning more, and making better work. This site is where that's got to.</p>
@@ -50,6 +50,12 @@ const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_
     opacity: 0.15;
   }
 
+  .about-portrait__caption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
   .about-text {
     display: flex;
     flex-direction: column;
@@ -61,13 +67,5 @@ const portraitUrl = "https://res.cloudinary.com/df3fwxynp/image/upload/f_auto,q_
     font-size: 1.05rem;
     line-height: 1.75;
     color: var(--text);
-  }
-
-  @media (min-width: 768px) {
-    .about-page {
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: start;
-    }
   }
 </style>
