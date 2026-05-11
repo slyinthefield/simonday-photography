@@ -4,28 +4,25 @@ import { getCollection } from 'astro:content';
 import { coverImage } from '../../utils/cloudinary';
 
 const allSeries = await getCollection('series');
-allSeries.sort((a, b) => b.data.year - a.data.year);
+const sortedSeries = allSeries.sort((a, b) => b.data.year - a.data.year);
 ---
-
-<BaseLayout title="Work — Simon Day">
-  <main class="work-index">
+<BaseLayout title="Work">
+  <div class="work-index">
     <div class="work-grid">
-      {allSeries.map((series) => (
+      {sortedSeries.map((series) => (
         <a href={`/work/${series.id}`} class="series-card">
-          <h2 class="series-card__title">{series.data.title}</h2>
           <div class="series-card__image">
             {series.data.coverImage
               ? <img src={coverImage(series.data.coverImage)} alt={series.data.title} loading="lazy" />
               : <div class="series-card__placeholder"></div>
             }
           </div>
-          <div class="series-card__meta">
-            <span class="series-card__location">{series.data.location}</span>
-            <span class="series-card__year">{series.data.year}</span>
-            <span class="series-card__count">{series.data.images.length} images</span>
+          <div class="series-card__info">
+            <p class="series-card__title">{series.data.title}</p>
+            <p class="series-card__meta">{series.data.year} · {series.data.images.length} images</p>
           </div>
         </a>
       ))}
     </div>
-  </main>
+  </div>
 </BaseLayout>

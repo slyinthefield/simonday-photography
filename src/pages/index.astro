@@ -1,11 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { heroImage } from '../utils/cloudinary';
+import { heroImage, coverImage } from '../utils/cloudinary';
 import siteSettings from '../data/site-settings.json';
-import { heroImage } from '../utils/cloudinary';
-import siteSettings from '../data/site-settings.json';
-import { coverImage } from '../utils/cloudinary';
 
 const allSeries = await getCollection('series');
 const featuredSeries = allSeries
@@ -15,7 +12,6 @@ const featuredSeries = allSeries
 ---
 <BaseLayout title="Home" overlayNav={true}>
   <section class="hero" style={siteSettings.heroImage ? `background-image: url(${heroImage(siteSettings.heroImage)})` : ''}>
-    <span class="hero__eyebrow">Photography</span>
     <h1 class="hero__title">Simon<br />Day</h1>
     <span class="hero__scroll-hint">Scroll</span>
   </section>
