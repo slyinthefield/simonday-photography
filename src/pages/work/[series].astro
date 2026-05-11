@@ -44,4 +44,68 @@ const { Content } = await render(entry);
       <a href="/work">← Back to Work</a>
     </nav>
   </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button class="lightbox__close" aria-label="Close">&#x2715;</button>
+    <button class="lightbox__prev" aria-label="Previous image">&#x2039;</button>
+    <img class="lightbox__img" src="" alt="" />
+    <button class="lightbox__next" aria-label="Next image">&#x203a;</button>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox.querySelector('.lightbox__img');
+      const btnClose = lightbox.querySelector('.lightbox__close');
+      const btnPrev = lightbox.querySelector('.lightbox__prev');
+      const btnNext = lightbox.querySelector('.lightbox__next');
+      const seriesImgs = [...document.querySelectorAll('.series-image img')];
+      let current = 0;
+
+      function open(index) {
+        current = index;
+        lightboxImg.src = seriesImgs[current].src;
+        lightboxImg.alt = seriesImgs[current].alt;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+
+      function close() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+      }
+
+      function prev() {
+        current = (current - 1 + seriesImgs.length) % seriesImgs.length;
+        lightboxImg.src = seriesImgs[current].src;
+        lightboxImg.alt = seriesImgs[current].alt;
+      }
+
+      function next() {
+        current = (current + 1) % seriesImgs.length;
+        lightboxImg.src = seriesImgs[current].src;
+        lightboxImg.alt = seriesImgs[current].alt;
+      }
+
+      seriesImgs.forEach((img, i) => {
+        img.addEventListener('click', () => open(i));
+      });
+
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+      btnNext.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+    })();
+  </script>
 </BaseLayout>
