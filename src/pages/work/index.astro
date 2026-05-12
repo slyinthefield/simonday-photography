@@ -5,12 +5,21 @@ import { coverImage } from '../../utils/cloudinary';
 
 const allSeries = await getCollection('series');
 const sortedSeries = allSeries.sort((a, b) => b.data.year - a.data.year);
+const years = [...new Set(sortedSeries.map(s => s.data.year))];
 ---
 <BaseLayout title="Work">
   <div class="work-index">
+    {years.length > 1 && (
+      <div class="work-filter">
+        <button class="work-filter__btn is-active" data-year="all">All</button>
+        {years.map(year => (
+          <button class="work-filter__btn" data-year={String(year)}>{year}</button>
+        ))}
+      </div>
+    )}
     <div class="work-grid">
       {sortedSeries.map((series) => (
-        <a href={`/work/${series.id}`} class="series-card">
+        <a href={`/work/${series.id}`} class="series-card" data-year={String(series.data.year)}>
           <div class="series-card__image">
             {series.data.coverImage
               ? <img src={coverImage(series.data.coverImage)} alt={series.data.title} loading="lazy" />
@@ -26,3 +35,46 @@ const sortedSeries = allSeries.sort((a, b) => b.data.year - a.data.year);
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .work-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .work-filter__btn {
+    background: none;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 0.35rem 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .work-filter__btn:hover,
+  .work-filter__btn.is-active {
+    border-color: var(--text);
+    color: var(--text);
+  }
+</style>
+
+<script is:inline>
+  const buttons = document.querySelectorAll('.work-filter__btn');
+  const cards = document.querySelectorAll('.series-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const year = btn.dataset.year;
+      cards.forEach(card => {
+        card.style.display = (year === 'all' || card.dataset.year === year) ? '' : 'none';
+      });
+    });
+  });
+</script>
