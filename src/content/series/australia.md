@@ -34,5 +34,4 @@ images:
   - url: https://res.cloudinary.com/df3fwxynp/image/upload/v1777463446/australia-14_tho4pt.jpg
     caption: Hobart - Tasmania Museum & Art Gallery
 ---
-
-Split between coast and city across a few visits. Rock and water at Noosa; Brisbane's surfaces in the rain. The series moves between the natural and the constructed without treating the distinction as important.
+Split between coast and city across a few visits. Rock and water at Noosa; Brisbane's surfaces in the rain. The series moves between the natural and the constructed.
